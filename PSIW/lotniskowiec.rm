@@ -1,0 +1,23 @@
+Aby skompilować projekt należy użyć komendy: cc -Wall lotniskowiec.c -o lotniskowiec.out,
+a następnie uruchomić za pomocą: ./lotniskowiec.out
+
+Treść zadania:
+Na lotniskowcu lądują i startują samoloty. W tym celu potrzebują wyłącznego dostępu do pasa.
+Lotniskowiec może pomieścić pewną ustaloną liczbę N samolotów.
+Jeśli samolotów na lotniskowcu jest mniej niż K(K < N),
+wówczas priorytet w dostępie do pasa mają samoloty lądujące.
+
+W programie tworzona jest zadana ilość wątków (S), które służą do lądowania oraz do startowania.
+Wątek z funkcją landing jest odpowiedzialna za lądowanie, na początku blokuję pas startowy,
+następnie sprawdza, czy na statku są dostępne wolne miejsca, jeśli tak to ląduje, zwiększając zmienna
+globalną i zwalnia pas, jeśli lotniskowiec jest pełen, przechodzi w stan oczekiwania na sygnał i zwalnia pas.
+
+Wątek z funkcją takeoff jest odpowiedzialny za start samolotów, na początku blokuję pas startowy, następnie sprawdza, czy na statku jest więcej samolotów niż K, jeśli jest ich więcej, to samolot startuje, zmniejszając tym samym zmienną globalną i zwalnia pas, jeśli natomiast samolotów byłoby mniej niż K, to wtedy wątek przechodzi w stan uśpienia w oczekiwaniu na sygnał i zwalnia pas.
+
+Przykładowy scenariusz 1: N = 15 K = 9 początkowa liczba samolotów na statku = 0
+
+w takim przypadku samoloty będą lądować, aż na lotniskowcu nie będzie ich co najmniej 9.
+
+Przykładowy scenariusz 2: N = 15 K = 9 początkowa liczba samolotów na statku = 10
+
+w takim przypadku samoloty mają dwie możliwości, mogą albo lądować, albo startować.

@@ -1,0 +1,22 @@
+Aby skompilować projekt należy użyć komendy: cc -Wall glodomory.c -o glodomory.out,
+a następnie uruchomić za pomocą: ./glodomory.out
+
+Treść zadania:
+Zadanie oparte jest na problemie ucztujących filozofów,
+przy czym każdy posiłek ma swoją wagę i odnotowywana jest
+łączna waga posiłków zjedzonych przez każdego głodomora.
+Na podstawie łącznej wagi zjedzonych posiłków ustalany jest priorytet
+głodomora — im mniej zjadł, tym ma wyższy priorytet.
+
+W programie tworzona jest zadana liczba procesów, z których każdy reprezentuje
+jednego z głodomorów, procesy te komunikują się miedzy sobą za pomocą pamięci współdzielonej,
+przekazując sobie aktualną liczbę dań zjedzonych przez każdego z głodomorów i za pomocą semaforów
+paleczka, pozwolenie i talerz dopuszczają zainteresowanych do jedzenia w taki sposób, aby ten, który zjadł
+najmniej, otrzymał priorytet.
+Talerze znajdują się tu po to, by uniknąć sytuacji, w których procesy mogłyby się zakleszczyć
+np. gdy każdy z filozofów wziąłby w tym samym czasie prawą pałeczkę a w przypadku gdy posiadamy talerze,
+dopiero głodomór z takowym będzie ubiegać się o obydwie pałeczki.
+
+semafor paleczka — opuszczamy, gdy pałeczka jest pobierana, a podnosimy, gdy jest odstawiana
+semafor pozwolenie — opuszczamy, gdy głodomór zje i podnosimy temu, który zjadł najmniej
+semafor talerz — opuszczamy, gdy talerz jest pobierany i podnosimy, gdy jest odstawiany
